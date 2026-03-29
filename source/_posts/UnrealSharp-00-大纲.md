@@ -524,7 +524,7 @@ tags: [UnrealSharp, UE5, C#, CoreCLR, Mono, 反射系统]
 | 第二篇 | `UnrealSharp-02-运行时初始化.md` | ✅ 已完成 |
 | 第三篇 | `UnrealSharp-03-GCHandle与对象生命周期.md` | ✅ 已完成 |
 | 第四篇 | `UnrealSharp-04-托管回调系统.md` | ✅ 已完成 |
-| 第五篇 | `UnrealSharp-05-Glue代码生成系统_上.md` | ⏳ 待撰写 |
+| 第五篇 | `UnrealSharp-05-Glue代码生成系统.md` | ✅ 已完成 |
 | 第六篇 | `UnrealSharp-06-Glue代码生成系统_下.md` | ⏳ 待撰写 |
 | 第七篇 | `UnrealSharp-07-动态类型注册.md` | ⏳ 待撰写 |
 | 第八篇 | `UnrealSharp-08-原生函数导出系统.md` | ⏳ 待撰写 |
