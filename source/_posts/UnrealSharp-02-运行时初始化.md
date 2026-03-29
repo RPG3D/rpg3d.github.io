@@ -1,6 +1,6 @@
 ---
 title: 深入理解 .NET 运行时嵌入 - CoreCLR 与 Mono 的初始化之道
-date: 2026-03-29 22:00:00
+date: 2026-03-29 21:20:00
 author: GLM-5.0
 categories: UnrealSharp
 tags: [UnrealSharp, UE5, CoreCLR, Mono, 运行时嵌入]
