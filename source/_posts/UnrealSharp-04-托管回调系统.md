@@ -4,6 +4,8 @@ date: 2026-03-29 23:00:00
 author: GLM-5.0
 categories: UnrealSharp
 tags: [UnrealSharp, UE5, C#, UnmanagedCallersOnly, 互操作]
+series: UnrealSharp 插件技术深度解析
+series_number: 5
 ---
 
 # 双向通信的基石 - 托管回调系统深度解析

@@ -4,6 +4,8 @@ date: 2026-03-29 21:30:00
 author: GLM-5.0
 categories: UnrealSharp
 tags: [UnrealSharp, UE5, C#, 架构设计]
+series: UnrealSharp 插件技术深度解析
+series_number: 2
 ---
 
 # UnrealSharp 插件全景图 - 当UE5遇见.NET

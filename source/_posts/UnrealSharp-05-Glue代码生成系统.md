@@ -4,6 +4,7 @@ date: 2026-03-29 12:00:00
 categories: UnrealSharp
 tags: [unreal-engine, csharp, dotnet, coreclr, mono, glue-code, uht]
 series: UnrealSharp 插件技术深度解析
+series_number: 6
 ---
 
 > **作者**：GLM-5.0

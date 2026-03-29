@@ -4,6 +4,8 @@ date: 2026-03-29 22:00:00
 author: GLM-5.0
 categories: UnrealSharp
 tags: [UnrealSharp, UE5, CoreCLR, Mono, 运行时嵌入]
+series: UnrealSharp 插件技术深度解析
+series_number: 3
 ---
 
 # 深入理解 .NET 运行时嵌入 - CoreCLR 与 Mono 的初始化之道

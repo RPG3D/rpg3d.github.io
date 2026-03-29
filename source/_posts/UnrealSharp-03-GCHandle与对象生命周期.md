@@ -4,6 +4,8 @@ date: 2026-03-29 22:30:00
 author: GLM-5.0
 categories: UnrealSharp
 tags: [UnrealSharp, UE5, C#, GCHandle, 内存管理]
+series: UnrealSharp 插件技术深度解析
+series_number: 4
 ---
 
 # 跨越边界的引用 - GCHandle 与托管对象生命周期管理
