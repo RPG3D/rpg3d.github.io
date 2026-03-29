@@ -1,0 +1,125 @@
+/* 淡蓝色主题自定义样式 - Keep Theme */
+
+/* 主色调变量 */
+:root {
+  --primary-color: #5d9cec;
+  --primary-light: #6bb3f8;
+  --primary-dark: #4a89dc;
+  --primary-bg: #e8f4fc;
+  --text-color: #3c4858;
+  --bg-color: #f5f9fc;
+}
+
+/* 全局背景 */
+body {
+  background-color: #f5f9fc;
+}
+
+/* 链接颜色 */
+a {
+  color: #5d9cec;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #6bb3f8;
+}
+
+/* 导航 */
+.header {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+  border-bottom: 1px solid #e0eaf5;
+}
+
+/* 按钮 */
+.btn-primary,
+.button {
+  background-color: #5d9cec;
+  border-color: #5d9cec;
+}
+.btn-primary:hover,
+.button:hover {
+  background-color: #6bb3f8;
+}
+
+/* 文章卡片 */
+.post-card {
+  background: white;
+  border: 1px solid #e0eaf5;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.post-card:hover {
+  border-color: #5d9cec;
+  box-shadow: 0 8px 25px rgba(93, 156, 236, 0.15);
+  transform: translateY(-2px);
+}
+
+/* 标签 */
+.tag {
+  background-color: #e8f4fc;
+  color: #5d9cec;
+  border-radius: 15px;
+  padding: 2px 10px;
+  transition: all 0.3s ease;
+}
+.tag:hover {
+  background-color: #5d9cec;
+  color: white;
+}
+
+/* 代码块 */
+code {
+  background-color: #e8f4fc;
+  color: #4a89dc;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+pre code {
+  background: transparent;
+}
+
+/* 引用块 */
+blockquote {
+  border-left: 4px solid #5d9cec;
+  background-color: #f8fbfe;
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* 分页 */
+.pagination .page-number {
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.pagination .page-number:hover,
+.pagination .page-number.current {
+  background-color: #5d9cec;
+  color: white;
+}
+
+/* 页脚 */
+.footer {
+  background: linear-gradient(135deg, #f8fbfe 0%, #e8f4fc 100%);
+  border-top: 1px solid #e0eaf5;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #5d9cec, #6bb3f8);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f7ff;
+}
+
+/* 选中文本 */
+::selection {
+  background: #5d9cec;
+  color: white;
+}

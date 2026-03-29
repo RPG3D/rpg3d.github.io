@@ -1,0 +1,36 @@
+# Cactus Theme Configuration
+# 淡蓝色主题
+
+# 注入自定义 CSS
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/custom.css">
+
+# Navs
+nav:
+  Home: /
+  Archives: /archives/
+
+# Social links
+social_links:
+  github: https://github.com/rpg3d
+
+# Theme
+dark_theme: false
+
+# Projects (show on homepage)
+projects:
+  - name: RPG3D Game Dev
+    url: https://github.com/rpg3d
+    description: 游戏开发与技术分享
+
+# Other
+rss: true
+favicon: /favicon.ico
+
+# Pagination
+pagination: 10
+
+# Copyright
+copyright:
+  start_year: 2024

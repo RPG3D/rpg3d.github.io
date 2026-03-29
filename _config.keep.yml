@@ -1,0 +1,51 @@
+# Keep Theme Configuration
+# 淡蓝色配色方案
+
+# 基础设置
+base_info:
+  title: RPG3D Blog
+  author: RPG3D
+  url: https://rpg3d.github.io
+
+# 导航菜单
+menu:
+  Home: /
+  Archives: /archives
+  Categories: /categories
+  Tags: /tags
+
+# 社交链接
+social:
+  github: https://github.com/rpg3d
+
+# 淡蓝色主题配色
+style:
+  primary_color: "#5d9cec"
+  favicon: /favicon.ico
+
+# 首页设置 - 启用侧边栏
+home:
+  sidebar: true
+
+# 侧边栏设置
+sidebar:
+  position: left
+  display:
+    home: true
+    archive: true
+    post: true
+
+# 文章设置
+post:
+  meta_author: true
+  meta_date: true
+  meta_category: true
+  meta_word_count: true
+
+# 代码高亮
+code_block:
+  highlight_theme: default
+
+# 页脚
+footer:
+  since: 2024

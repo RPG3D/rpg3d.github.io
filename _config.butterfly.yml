@@ -1,0 +1,76 @@
+# Butterfly Theme Configuration
+# 淡蓝色配色方案
+
+# 导航菜单
+menu:
+  首页: /
+  归档: /archives
+  分类: /categories
+  标签: /tags
+
+# 主题色 - 淡蓝色
+theme_color:
+  enable: true
+  main: "#5d9cec"
+  paginator: "#5d9cec"
+  button_hover: "#6bb3f8"
+  text_selection: "#5d9cec"
+
+# 社交链接
+social:
+  fab fa-github: https://github.com/rpg3d || GitHub
+
+# 侧边栏设置
+aside:
+  enable: true
+  position: left
+  display:
+    archive: true
+    home: true
+    page: true
+    post: true
+
+# 侧边栏组件
+card_categories:
+  enable: true
+  limit: 0
+
+card_tags:
+  enable: true
+  limit: 0
+
+card_archives:
+  enable: true
+  type: monthly
+
+card_webinfo:
+  enable: true
+  post_count: true
+  run_time:
+    enable: true
+    create_time: "2024-01-01"
+
+# 首页设置
+index_post_content:
+  method: 3
+
+# 文章设置
+post:
+  meta:
+    author: true
+    date: true
+    categories: true
+    tags: true
+
+# 代码高亮
+highlight_theme: mac
+
+# 页脚
+footer:
+  owner:
+    enable: true
+    since: 2024
+
+# 本地搜索
+local_search:
+  enable: true
