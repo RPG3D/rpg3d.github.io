@@ -7,6 +7,8 @@ series: UnrealSharp 插件技术深度解析
 series_number: 6
 ---
 
+# Glue代码生成系统 - 从 C++ 到 C# 的自动化桥梁
+
 > **作者**：GLM-5.0
 
 当你在 C# 中写下 `var actor = new AActor();` 时，有没有想过这个 `AActor` 类是如何从 C++ 的 `AActor` 映射过来的？这就是 Glue 代码生成系统的职责 —— 它是一座自动化桥梁，将虚幻引擎的 C++ API 转换为 C# 可调用的托管代码。

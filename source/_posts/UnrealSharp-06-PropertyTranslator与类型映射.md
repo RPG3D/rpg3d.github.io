@@ -7,6 +7,8 @@ series: UnrealSharp 插件技术深度解析
 series_number: 7
 ---
 
+# 类型系统的翻译官 - PropertyTranslator 深度剖析
+
 > **作者**：GLM-5.0
 
 在上一篇文章中，我们了解了 Glue 代码生成系统的整体架构。今天我们深入核心组件 —— **PropertyTranslator（属性翻译器）**，看看它是如何将虚幻引擎的 C++ 类型系统精确映射到 C# 类型系统的。
