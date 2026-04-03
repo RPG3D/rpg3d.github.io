@@ -286,6 +286,8 @@ public partial class AActor : UObject
 }
 ```
 
+> **⚠️ iOS 平台的 `stackalloc` 对齐要求**：在 iOS（ARM64）上，Mono 解释器要求 `stackalloc` 分配的内存地址按 **16 字节对齐**。如果参数缓冲区大小不是 16 的倍数，可能导致未对齐访问异常（`SIGBUS`）。因此 Glue 代码生成器在计算 `ParamsSize` 时会将大小向上取整到 16 的倍数：`int alignedSize = (paramsSize + 15) & ~15;`。这一细节在桌面平台上无影响，但对 iOS 部署至关重要。
+
 ## PropertyTranslator：类型翻译系统
 
 ### 设计理念

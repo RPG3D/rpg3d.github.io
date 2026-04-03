@@ -330,6 +330,8 @@ public static unsafe int InvokeManagedMethod(
 | 性能 | 更快 | 较慢（反射开销） |
 | 原因 | JIT 可生成直接调用 | AOT+解释器模式限制 |
 
+> **⚠️ Mono 路径的性能开销细节**：`MethodInfo.Invoke()` 每次调用会产生 **3 次堆分配**：`new object[] { argumentsBuffer, returnValueBuffer }` 分配一个数组，以及两个 `IntPtr` 参数的装箱（boxing）操作。相比 CoreCLR 的直接函数指针调用（零分配），Mono 路径在方法调用密集场景下会产生显著的 GC 压力，实测性能约为 CoreCLR 的 1/3 ~ 1/10。这是选择 CoreCLR 作为桌面平台首选运行时的重要原因之一。
+
 #### LookupManagedMethod：查找方法
 
 ```csharp

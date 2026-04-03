@@ -52,7 +52,7 @@ UnrealSharp 的核心使命就是**搭建这两大生态之间的桥梁**。
 
 从源码可以看出，UnrealSharp 的设计目标包括：
 
-1. **双运行时支持**：同时支持 CoreCLR 和 Mono，适应不同平台需求
+1. **双运行时支持**：同时支持 CoreCLR 和 Mono，适应不同平台需求。其中 Mono 路径使用的是 **dotnet/runtime 的 .NET 10 Mono**（非传统 Xamarin Mono），初始化时调用 `mono_jit_init_version("UnrealSharp", "v4.0.30319")`，其中 `v4.0.30319` 是 Mono Embedding API 的遗留固定参数，不代表实际 .NET 版本
 2. **完整反射集成**：C# 类型可以注册为 UE 的 UClass/UStruct，与蓝图无缝交互
 3. **热重载**：支持运行时重新加载程序集，无需重启编辑器
 4. **跨平台**：支持 Win64、Mac、Android、iOS
@@ -106,7 +106,7 @@ UnrealSharp 采用经典的**三层架构**设计：
 │  │     CoreCLR              │    │       Mono               │          │
 │  │  - hostfxr               │    │  - mono_jit_init         │          │
 │  │  - runtimeconfig.json    │    │  - MonoDomain            │          │
-│  │  - .NET 6+               │    │  - .NET Framework 4.x    │          │
+│  │  - .NET 6+               │    │  - .NET 10 Mono          │          │
 │  └──────────────────────────┘    └──────────────────────────┘          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```

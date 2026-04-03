@@ -211,14 +211,14 @@ public static class GCHandleUtilities
     private static readonly ConcurrentDictionary<AssemblyLoadContext, 
         ConcurrentDictionary<GCHandle, object>> StrongRefsByAssembly = new();
 
-    // 创建强引用句柄
+    // 创建强引用句柄（主重载：接受 AssemblyLoadContext）
     public static GCHandle AllocateStrongPointer(object value, AssemblyLoadContext loadContext)
     {
         // 先创建弱引用
         GCHandle weakHandle = GCHandle.Alloc(value, GCHandleType.Weak);
-        
+
         // 获取或创建该 ALC 的强引用字典
-        ConcurrentDictionary<GCHandle, object> strongReferences = 
+        ConcurrentDictionary<GCHandle, object> strongReferences =
             StrongRefsByAssembly.GetOrAdd(loadContext, alcInstance =>
         {
 #if !UNREALSHARP_MONO
@@ -227,10 +227,17 @@ public static class GCHandleUtilities
 #endif
             return new ConcurrentDictionary<GCHandle, object>();
         });
-            
+
         // 存储强引用（防止 GC 回收）
         strongReferences.TryAdd(weakHandle, value);
         return weakHandle;
+    }
+
+    // 便捷重载：接受 Assembly，内部通过 AssemblyLoadContext.GetLoadContext(assembly) 转换
+    public static GCHandle AllocateStrongPointer(object value, Assembly assembly)
+    {
+        AssemblyLoadContext? assemblyLoadContext = AssemblyLoadContext.GetLoadContext(assembly);
+        return AllocateStrongPointer(value, assemblyLoadContext!);
     }
 
     // 创建弱引用句柄

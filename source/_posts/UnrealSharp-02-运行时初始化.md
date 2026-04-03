@@ -173,6 +173,8 @@ bool UCSManager::InitializeDotNetRuntime()
 
 CoreCLR 的嵌入从加载 `hostfxr` 开始。`hostfxr` 是 .NET 的宿主解析器，负责找到并初始化正确的 .NET 运行时：
 
+> **📝 Mono 路径的库命名细节**：与 CoreCLR 使用 `hostfxr` 动态加载不同，Mono 运行时在编译期静态链接，`LoadRuntimeHost()` 在 Mono 路径下直接返回 `true`。值得注意的是，macOS 上 Mono 运行时的动态库被命名为 **`libcoreclr.dylib`**（而非 `libmono.dylib`），这是为了复用 CoreCLR 路径已有的加载逻辑。Windows 上对应的名称则为 `coreclr.dll`，与 CoreCLR 同名，容易产生混淆。
+
 ```cpp
 // CSManager.cpp:243-290
 bool UCSManager::LoadRuntimeHost()
@@ -399,6 +401,14 @@ MonoDomain* InitializeMonoRuntime(const FString& RuntimeDir, const FString& Extr
 #else
     // 非 iOS：使用 JIT
     mono_jit_set_aot_mode(MONO_AOT_MODE_NONE);
+
+    // 可选：通过放置 mono_interp.flag 文件强制使用纯解释器模式（INTERP_ONLY）
+    // 适用于调试场景，无需重新编译即可切换执行模式
+    if (FPlatformFileManager::Get().GetPlatformFile().FileExists(
+            *(FPaths::ProjectDir() / TEXT("mono_interp.flag"))))
+    {
+        mono_jit_set_aot_mode(MONO_AOT_MODE_INTERP_ONLY);
+    }
 #endif
 
     // 步骤 4：解析配置
@@ -406,6 +416,8 @@ MonoDomain* InitializeMonoRuntime(const FString& RuntimeDir, const FString& Extr
 
     // 步骤 5：初始化 JIT
     MonoDomain* Domain = mono_jit_init_version("UnrealSharp", "v4.0.30319");
+    // ⚠️ "v4.0.30319" 是 Mono 嵌入 API 的历史遗留固定参数字符串，
+    // 并不意味着运行的是 .NET Framework 4.x。实际运行的是 .NET 10 Mono 运行时。
 
     // 步骤 6：注册主线程
     mono_thread_set_main(mono_thread_current());
@@ -417,6 +429,8 @@ MonoDomain* InitializeMonoRuntime(const FString& RuntimeDir, const FString& Extr
 ### 4.3 iOS 平台的特殊挑战
 
 iOS 是 UnrealSharp 最复杂的支持平台，面临三大挑战：
+
+> **💡 非 iOS 平台的调试技巧**：在 macOS/Windows/Android 等平台上，可以在项目根目录放置 **`mono_interp.flag`** 文件，运行时检测到该文件后会将 AOT 模式切换为 `MONO_AOT_MODE_INTERP_ONLY`（纯解释器模式）。这在调试 JIT 相关问题时非常有用，无需重新编译即可切换执行模式。
 
 **挑战 1：禁止 JIT**
 
@@ -525,6 +539,10 @@ MonoObject* Result = mono_runtime_invoke(InitMethod, nullptr, Args, &Exception);
 | 方法调用 | 直接函数指针 | `mono_runtime_invoke` |
 | 参数传递 | 按签名传递 | 数组传递，值类型需要取地址 |
 | 异常处理 | 自动传播 | 需要 `MonoObject**` 捕获 |
+
+> **⚠️ 为什么不用 `mono_method_get_unmanaged_callers_only_ftnptr`？**
+>
+> 理论上，可以通过 `mono_method_get_unmanaged_callers_only_ftnptr` 获取函数指针来直接调用（类似 CoreCLR 路径），避免 `mono_runtime_invoke` 的反射开销和数组传参开销。但在实践中，**.NET 10 Mono 对含复杂指针参数的方法调用 `mono_method_get_unmanaged_callers_only_ftnptr` 会触发 crash**（原因尚在上游调查中）。`InitializeUnrealSharp` 的入口签名包含多个指针参数，正好触发此 bug，因此只能退而使用 `mono_runtime_invoke`。此技术债已记录，待上游修复后可切回函数指针路径以提升性能。
 
 ---
 
