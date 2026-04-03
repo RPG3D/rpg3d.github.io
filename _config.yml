@@ -103,3 +103,19 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+# Offline / PWA - hexo-offline
+offline:
+  maximumFileSizeToCacheInBytes: 134217728  # 128MB（128 * 1024 * 1024）
+  staticFileGlobs:
+    - public/**/*.{js,html,css,png,jpg,jpeg,gif,svg,eot,ttf,woff,woff2,ico}
+  stripPrefix: public
+  verbose: true
+  runtimeCaching:
+    - urlPattern: /*
+      handler: networkFirst
+      options:
+        cache:
+          name: rpg3d-blog-cache
+          maxEntries: 200
+          maxAgeSeconds: 604800  # 缓存有效期 7 天
